@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs';
-import { Account, User as AutUser } from 'next-auth';
+// import { Account, User as AutUser } from 'next-auth';
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider  from "next-auth/providers/credentials";
@@ -16,7 +16,7 @@ export const authOptions:any = {
         email: { label: 'Email', type: 'text' },
         password: {label:'Password', type: 'password'}
       },
-      async authorize(credentials: any) {
+      async authorize(credentials) {
         await connect();
         try {
           const user = await User.findOne({ email: credentials.email })
@@ -41,7 +41,7 @@ export const authOptions:any = {
     // ...add more providers here
   ],
   callbacks: {
-    async signIn({ user, account }: { user: AutUser, account: Account }) {
+    async signIn({ user, account }) {
       if (account?.provider === 'credentials') {
         return true
       }
