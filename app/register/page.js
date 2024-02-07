@@ -35,7 +35,7 @@ const isValidEmail = email => {
         },
         body: JSON.stringify({ email, password })
       });
-console.log(res.status)
+
       if(res.status === 400) {
         setError('This email is already registered!')
       }
