@@ -1,4 +1,4 @@
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import bcrypt from 'bcryptjs';
 import { Account, User as AuthUser } from 'next-auth';
 import GithubProvider from "next-auth/providers/github";
@@ -6,7 +6,7 @@ import CredentialsProvider  from "next-auth/providers/credentials";
 import User from '../../../models/User';
 import connect from '../../../utils/db';
 
-const authOptions = {
+const authOptions:NextAuthOptions  = {
   providers: [
     CredentialsProvider({
       id: 'credentials',
