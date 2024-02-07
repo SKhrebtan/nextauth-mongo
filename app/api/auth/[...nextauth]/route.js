@@ -3,8 +3,8 @@ import bcrypt from 'bcryptjs';
 // import { Account, User as AutUser } from 'next-auth';
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider  from "next-auth/providers/credentials";
-import User from '../../models/User';
-import connect from '../../utils/db';
+import User from '../../../models/User';
+import connect from '../../../utils/db';
 
 const authOptions = {
   // Configure one or more authentication providers
