@@ -7,14 +7,14 @@ const Navbar = () => {
     const pathname = usePathname();
     const { data: session } = useSession();
     return (
-        <div>
+        <div className='h-[45px]'>
             <ul className='flex justify-between m-10 items-center'>
-                <div >
+                <div className='flex items-center'>
                     <Link href='/'>
                         <li className={`${pathname === '/'? 'text-fuchsia-500 underline underline-offset-8': '' } `}>Home</li>
                     </Link>
                       </div>
-                    <div className='flex gap-10'>
+                    <div className='flex items-center gap-10'>
                     {session && <Link href='/dashboard'>
                        <li
                             className={`${pathname === '/dashboard'? 'text-fuchsia-500 underline underline-offset-8': '' } `}
@@ -35,7 +35,7 @@ const Navbar = () => {
                             <li>
                                 <button
                                 onClick={()=>signOut()}
-                                    className='p-2 px-5 -mt-1 bg-blue-500 rounded-full'
+                                    className='p-[5px] bg-blue-500 rounded-full'
                                     type='button'>Logout</button>
                             </li>
                         </>
