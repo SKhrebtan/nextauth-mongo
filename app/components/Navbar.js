@@ -1,27 +1,32 @@
 'use client'
 import Link from "next/link";
+import { usePathname } from 'next/navigation';
+
 import {useSession, signOut} from 'next-auth/react'
 const Navbar = () => {
+    const pathname = usePathname();
     const { data: session } = useSession();
     return (
         <div>
             <ul className='flex justify-between m-10 items-center'>
                 <div >
                     <Link href='/'>
-                        <li>Home</li>
+                        <li className={`${pathname === '/'? 'text-fuchsia-500 underline underline-offset-8': '' } `}>Home</li>
                     </Link>
                       </div>
                     <div className='flex gap-10'>
-                    <Link href='/dashboard'>
-                        <li>Dashboard</li>
-                    </Link>        
+                    {session && <Link href='/dashboard'>
+                       <li
+                            className={`${pathname === '/dashboard'? 'text-fuchsia-500 underline underline-offset-8': '' } `}
+                        >Dashboard</li>
+                    </Link>  }       
                     {!session ? (
                         <>
                         <Link href='/login'>
-                        <li>Login</li>
+                        <li className={`${pathname === '/login'? 'text-fuchsia-500 underline underline-offset-8': '' } `}>Login</li>
                     </Link>              
                     <Link href='/register'>
-                        <li>Register</li>
+                        <li className={`${pathname === '/register'? 'text-fuchsia-500 underline underline-offset-8': '' } `}>Register</li>
                             </Link>
                         </>
                     ) :
