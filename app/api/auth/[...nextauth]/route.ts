@@ -1,13 +1,12 @@
-import NextAuth from "next-auth/next";
+import NextAuth from "next-auth";
 import bcrypt from 'bcryptjs';
-// import { Account, User as AutUser } from 'next-auth';
+import { Account, User as AuthUser } from 'next-auth';
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider  from "next-auth/providers/credentials";
 import User from '../../../models/User';
 import connect from '../../../utils/db';
 
 const authOptions = {
-  // Configure one or more authentication providers
   providers: [
     CredentialsProvider({
       id: 'credentials',
@@ -38,10 +37,9 @@ const authOptions = {
       clientId: process.env.GITHUB_ID ?? '',
       clientSecret: process.env.GITHUB_SECRET ?? '',
     }),
-    // ...add more providers here
   ],
   callbacks: {
-    async signIn({ user, account }) {
+    async signIn({ user, account }:{user:AuthUser,account:Account}) {
       if (account?.provider === 'credentials') {
         return true
       }
