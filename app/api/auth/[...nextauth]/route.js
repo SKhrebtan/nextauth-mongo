@@ -6,7 +6,7 @@ import CredentialsProvider  from "next-auth/providers/credentials";
 import User from '../../../models/User';
 import connect from '../../../utils/db';
 
-export const authOptions:any = {
+export const authOptions = {
   // Configure one or more authentication providers
   providers: [
     CredentialsProvider({
